@@ -38,7 +38,7 @@ const questions = {
   
   function getRandomQuestion() {
     if (remainingQuestions.length === 0) {
-      alert("หมดคำถามแล้ว! เปลี่ยนหมวดหมู่ได้แล้ว!");
+      alert("ยังทำไม่เสร็จค่าาา!");
       return;
     }
   
