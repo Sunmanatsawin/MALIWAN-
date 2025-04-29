@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MALIWAN!</title>
+
+  <!-- เชื่อมโยงกับ Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ฟอนต์ Prompt -->
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- เชื่อมโยงกับไฟล์ CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ปุ่มแบบใหม่ จาก Uiverse.io by Voxybuns */
+    button {
+      --button_radius: 0.75em;
+      --button_color: #ffffff89;
+      --button_outline_color: #000000;
+      font-size: 50px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      border-radius: none;
+      background: var(--button_outline_color);
+    }
+
+    .button_top {
+      display: block;
+      box-sizing: border-box;
+      border: 4px solid var(--button_outline_color);
+      border-radius: none;
+      padding: 0.75em 1.5em;
+      background: var(--button_color);
+      color: var(--button_outline_color);
+      transform: translateY(-0.2em);
+      transition: transform 0.1s ease;
+    }
+
+    button:hover .button_top {
+      transform: translateY(-0.33em);
+    }
+
+    button:active .button_top {
+      transform: translateY(0);
+    }
+
+    /* สไตล์สำหรับปุ่มเลือกหมวดหมู่ */
+.category-btn .button_top {
+  font-size: 1.2rem;  /* ขนาดตัวอักษร */
+  font-weight: 600;   /* หนัก */
+  color: #333;        /* สีตัวอักษร */
+  text-align: center; /* จัดตำแหน่งข้อความให้ตรงกลาง */
+}
+
+.category-btn:hover .button_top {
+  background-color: #84a1df; /* เปลี่ยนพื้นหลังเป็นสีเขียวเมื่อ hover */
+  color: white;               /* เปลี่ยนสีตัวอักษรเป็นขาวเมื่อ hover */
+}
+
+.category-btn:focus .button_top {
+  outline: none;              /* ลบเส้นขอบตอน focus */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* เพิ่มเงา */
+}
+
+  </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col items-center p-4">
+
+  <h1 class="text-4xl font-bold mb-3 text-gray-800 text-center">M∆liW∆N</h1>
+  <h2 class="text-3xl mb-10 text-gray-800 text-center">ยินดีต้อนรับสู่เว็บมะลิวรรณ! มาท้าทายความคิดและพูดคุยกันเถอะ!</h2>
+
+  <!-- ปุ่มเลือกหมวดหมู่ -->
+<div class="flex flex-wrap gap-4 justify-center mb-10">
+    <button onclick="selectCategory('dead')" class="category-btn">
+      <span class="button_top">ความตาย</span>
+    </button>
+    <button onclick="selectCategory('love')" class="category-btn">
+      <span class="button_top">ความรัก</span>
+    </button>
+    <button onclick="selectCategory('loneliness')" class="category-btn">
+      <span class="button_top">ความเหงา</span>
+    </button>
+    <button onclick="selectCategory('decision')" class="category-btn">
+      <span class="button_top">การตัดสินใจ</span>
+    </button>
+  </div>
+  
+
+  <!-- ใช้ตัวอักษร (✿◠‿◠) แทนที่ -->
+<div id="categoryPromptImg" style="display: none; font-size: 30px; text-align: center;">(✿◠‿◠)</div>
+
+  <!-- categoryPrompt -->
+  <div id="categoryPrompt" class="text-3xl font-semibold mb-10 text-center" style="color: red;">
+    ⭢ กรุณาเลือกหมวดหมู่คำถาม ⭠
+  </div>
+
+  <div id="questionDisplay" class="text-gray-400 text-3xl font-semibold max-w-5xl text-center px-4 mb-10 leading-snug">
+    คำถามจะปรากฏที่นี่...
+  </div>
+
+  <!-- ปุ่ม start + ประวัติ -->
+  <div class="flex flex-col items-center gap-4 mb-10 mt-4">
+    <!-- ปุ่ม Start! -->
+    <div class="box-button" onclick="getRandomQuestion()">
+      <div class="button bg-[#dddddd] text-black text-3xl font-bold py-2 px-8 rounded-xl hover:bg-[#cccccc] transition">
+        <span>CLICK ME!</span>
+      </div>
+    </div>
+
+    <!-- ประวัติคำถาม -->
+    <section id="historySection" style="display:none;">
+      <h3>ประวัติคำถาม</h3>
+      <ul id="history"></ul>
+    </section>
+
+    <!-- ปุ่มสำหรับเปิด/ปิดประวัติคำถาม -->
+    <button id="toggleHistoryBtn" onclick="toggleHistory()">ประวัติคำถาม</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
